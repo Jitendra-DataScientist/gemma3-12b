@@ -98,6 +98,232 @@ async def ask_question_from_text(request: ExtarctionRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/gemma3-1b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/gemma3-1b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='gemma3:1b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/gemma3-4b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/gemma3-4b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='gemma3:4b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/qwen2_point_5-0_point_5b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/0_point_5b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='qwen2.5:0.5b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/qwen2_point_5_7b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/qwen2_point_5_7b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='qwen2.5:7b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/qwen2_point_5_3b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/qwen2_point_5_3b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='qwen2.5:3b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@app.post("/mistral-7b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/mistral-7b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='mistral:7b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip().encode('utf-8', 'ignore').decode('utf-8'))
+        # try:
+        #     print (json.dumps(answer, indent=4))
+        # except:
+        #     print ("invalid json")
+        print(f"Ollama Response: {response}")
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@app.post("/Llama3-8B/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/Llama3-8B/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='llama3:8B',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@app.post("/deepseek-llm-7b/ner/", response_model=ExtarctionResponse)
+async def ask_question_from_text(request: ExtarctionRequest):
+    try:
+        print ("/deepseek-llm-7b/ner/ endpoint hit")
+        # # Prepare the prompt for the model
+        # prompt = f"Based on the following text, answer the question:\n\nText: {request.text}\n\nQuestion: {request.question}"
+
+        # Generate the response using the model
+        response = ollama.chat(
+            model='deepseek-llm:7b',
+            messages=[{
+                'role': 'user',
+                'content': request.prompt
+            }]
+        )
+
+        # Extract the model's reply
+        answer = remove_code_block_delimiters(response['message']['content'].strip())
+        try:
+            print (json.dumps(answer, indent=4))
+        except:
+            print ("invalid json")
+
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 
 
