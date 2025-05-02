@@ -29,7 +29,8 @@ pattern = r'```[a-z]*\n([\s\S]*?)\n```'
 def remove_code_block_delimiters(text):
     match = re.search(pattern, text, re.DOTALL)
     if match:
-        return match.group(1).strip()
+        # Replace newline characters with spaces within the captured content
+        return match.group(1).replace('\n', ' ').strip()
     return text
 
 
